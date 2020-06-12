@@ -3,20 +3,20 @@
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Cubo4">
+    <DataSource Name="DataSource1">
       <ConnectionProperties>
         <DataProvider>OLEDB-MD</DataProvider>
         <ConnectString>Data Source=ROMEOPC\INSTANCIAROMEO;Initial Catalog=CUBO201314474</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
-      <rd:DataSourceID>89d14267-5638-485e-aef5-e0f6ed36b3d1</rd:DataSourceID>
+      <rd:DataSourceID>5efb0843-d808-4197-8b79-28e7c264bc57</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>Cubo4</DataSourceName>
+        <DataSourceName>DataSource1</DataSourceName>
         <CommandText>SELECT NON EMPTY { [Measures].[Cantidad] } ON COLUMNS, NON EMPTY { ([CLIENTE].[Nombre Cliente].[Nombre Cliente].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM [Seminario201314474P1] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
         <rd:DesignerState>
           <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
@@ -81,6 +81,15 @@
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!Cantidad.Value</FilterExpression>
+          <Operator>TopN</Operator>
+          <FilterValues>
+            <FilterValue DataType="Integer">10</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
     </DataSet>
   </DataSets>
   <ReportSections>
@@ -107,11 +116,14 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>Top de clientes con más compras realizadas</Value>
+                    <Value>Top de clientes con más compras realizadas (cantidad de unidades compradas).</Value>
                     <Style>
-                      <FontFamily>Segoe UI Light</FontFamily>
-                      <FontSize>24pt</FontSize>
-                      <FontWeight>Bold</FontWeight>
+                      <FontStyle>Normal</FontStyle>
+                      <FontFamily>Times New Roman</FontFamily>
+                      <FontSize>12pt</FontSize>
+                      <FontWeight>Normal</FontWeight>
+                      <TextDecoration>None</TextDecoration>
+                      <Color>#000000</Color>
                     </Style>
                   </TextRun>
                 </TextRuns>
@@ -119,8 +131,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>textbox1</rd:DefaultName>
-            <Height>0.97167in</Height>
-            <Width>7.59375in</Width>
+            <Height>0.72167in</Height>
+            <Width>8.0625in</Width>
             <Style>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -132,15 +144,15 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4.63231in</Width>
+                  <Width>3.71875in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.80492in</Width>
+                  <Width>1in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.27787in</Height>
+                  <Height>0.22in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -224,7 +236,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.26787in</Height>
+                  <Height>0.21in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -307,7 +319,7 @@
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
-                  <Height>0.26787in</Height>
+                  <Height>0.21in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -428,9 +440,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.27375in</Top>
-            <Height>0.81361in</Height>
-            <Width>6.43723in</Width>
+            <Top>1.13944in</Top>
+            <Height>0.64in</Height>
+            <Width>4.71875in</Width>
             <ZIndex>1</ZIndex>
             <Style />
           </Tablix>
@@ -445,7 +457,8 @@
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!Nombre_Cliente.Value</Value>
+                      <Value>=Fields!Cantidad.Value</Value>
+                      <Direction>Descending</Direction>
                     </SortExpression>
                   </SortExpressions>
                   <Label>=Fields!Nombre_Cliente.Value</Label>
@@ -469,6 +482,8 @@
                       </ChartDataPointValues>
                       <ChartDataLabel>
                         <Style />
+                        <UseValueAsLabel>true</UseValueAsLabel>
+                        <Visible>true</Visible>
                       </ChartDataLabel>
                       <Style />
                       <ChartMarker>
@@ -477,6 +492,8 @@
                       <DataElementOutput>Output</DataElementOutput>
                     </ChartDataPoint>
                   </ChartDataPoints>
+                  <Type>Shape</Type>
+                  <Subtype>Pyramid</Subtype>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -509,7 +526,7 @@
                       <Color>#5c5c5c</Color>
                     </Style>
                     <ChartAxisTitle>
-                      <Caption>CLIENTES</Caption>
+                      <Caption />
                       <Style>
                         <FontSize>9pt</FontSize>
                         <Color>#5c5c5c</Color>
@@ -722,6 +739,9 @@
                     </ChartAxisScaleBreak>
                   </ChartAxis>
                 </ChartValueAxes>
+                <ChartThreeDProperties>
+                  <Enabled>true</Enabled>
+                </ChartThreeDProperties>
                 <Style>
                   <BackgroundColor>#00ffffff</BackgroundColor>
                   <BackgroundGradientType>None</BackgroundGradientType>
@@ -734,7 +754,6 @@
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>8pt</FontSize>
                 </Style>
-                <Position>TopLeft</Position>
                 <ChartLegendTitle>
                   <Caption />
                   <Style>
@@ -749,7 +768,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Clientes y unidades compradas</Caption>
+                <Caption>Clientes y la cantidad de productos que ha comprado</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -779,10 +798,9 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.27375in</Top>
-            <Left>7.1178in</Left>
-            <Height>2.54167in</Height>
-            <Width>4.8125in</Width>
+            <Top>2.0925in</Top>
+            <Height>7.38542in</Height>
+            <Width>7.95708in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -794,10 +812,10 @@
             </Style>
           </Chart>
         </ReportItems>
-        <Height>3.81542in</Height>
+        <Height>9.47792in</Height>
         <Style />
       </Body>
-      <Width>11.9303in</Width>
+      <Width>8.22792in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
@@ -816,5 +834,5 @@
   <Language>es-ES</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>d2c5145f-76be-42b4-a6f9-5c7c12437d24</rd:ReportID>
+  <rd:ReportID>08fada74-ac5c-4be6-a3e5-9273cdbf99ab</rd:ReportID>
 </Report>

@@ -3,20 +3,20 @@
   <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
   <AutoRefresh>0</AutoRefresh>
   <DataSources>
-    <DataSource Name="Cubo1">
+    <DataSource Name="cubo1">
       <ConnectionProperties>
         <DataProvider>OLEDB-MD</DataProvider>
         <ConnectString>Data Source=ROMEOPC\INSTANCIAROMEO;Initial Catalog=CUBO201314474</ConnectString>
         <IntegratedSecurity>true</IntegratedSecurity>
       </ConnectionProperties>
       <rd:SecurityType>Integrated</rd:SecurityType>
-      <rd:DataSourceID>42e9d832-130f-4a64-adf0-2986f79f2a45</rd:DataSourceID>
+      <rd:DataSourceID>8ca82c08-324c-477b-8a83-52ddd88c731a</rd:DataSourceID>
     </DataSource>
   </DataSources>
   <DataSets>
     <DataSet Name="DataSet1">
       <Query>
-        <DataSourceName>Cubo1</DataSourceName>
+        <DataSourceName>cubo1</DataSourceName>
         <CommandText>SELECT NON EMPTY { [Measures].[Cantidad] } ON COLUMNS, NON EMPTY { ([SUCURSAL].[Nombre Sucursal].[Nombre Sucursal].ALLMEMBERS ) } DIMENSION PROPERTIES MEMBER_CAPTION, MEMBER_VALUE, MEMBER_UNIQUE_NAME ON ROWS FROM [Seminario201314474P1] CELL PROPERTIES VALUE, BACK_COLOR, FORE_COLOR, FORMATTED_VALUE, FORMAT_STRING, FONT_NAME, FONT_SIZE, FONT_FLAGS</CommandText>
         <rd:DesignerState>
           <QueryDefinition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.microsoft.com/AnalysisServices/QueryDefinition">
@@ -81,6 +81,15 @@
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
+      <Filters>
+        <Filter>
+          <FilterExpression>=Fields!Cantidad.Value</FilterExpression>
+          <Operator>TopN</Operator>
+          <FilterValues>
+            <FilterValue DataType="Integer">10</FilterValue>
+          </FilterValues>
+        </Filter>
+      </Filters>
     </DataSet>
   </DataSets>
   <ReportSections>
@@ -107,7 +116,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value> Top de sucursales con más ventas realizadas (cantidad de unidades vendidas)</Value>
+                    <Value>Top de sucursales con más ventas realizadas (cantidad de unidades vendidas).</Value>
                     <Style>
                       <FontFamily>Segoe UI Light</FontFamily>
                       <FontSize>24pt</FontSize>
@@ -119,8 +128,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>textbox1</rd:DefaultName>
-            <Height>1.525in</Height>
-            <Width>8.01042in</Width>
+            <Height>1.49677in</Height>
+            <Width>9.12148in</Width>
             <Style>
               <PaddingLeft>2pt</PaddingLeft>
               <PaddingRight>2pt</PaddingRight>
@@ -132,10 +141,10 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>3.69792in</Width>
+                  <Width>2.36797in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>1.57731in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -422,9 +431,9 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>1.75458in</Top>
+            <Top>1.69in</Top>
             <Height>0.64in</Height>
-            <Width>4.69792in</Width>
+            <Width>3.94528in</Width>
             <ZIndex>1</ZIndex>
             <Style />
           </Tablix>
@@ -440,6 +449,7 @@
                   <SortExpressions>
                     <SortExpression>
                       <Value>=Fields!Cantidad.Value</Value>
+                      <Direction>Descending</Direction>
                     </SortExpression>
                   </SortExpressions>
                   <Label>=Fields!Nombre_Sucursal.Value</Label>
@@ -473,7 +483,8 @@
                       <DataElementOutput>Output</DataElementOutput>
                     </ChartDataPoint>
                   </ChartDataPoints>
-                  <Type>Bar</Type>
+                  <Type>Shape</Type>
+                  <Subtype>Pyramid</Subtype>
                   <Style />
                   <ChartEmptyPoints>
                     <Style />
@@ -521,7 +532,6 @@
                       </Style>
                     </ChartMajorGridLines>
                     <ChartMinorGridLines>
-                      <Enabled>True</Enabled>
                       <Style>
                         <Border>
                           <Color>Gainsboro</Color>
@@ -536,7 +546,6 @@
                           <Style>None</Style>
                         </Border>
                       </Style>
-                      <IntervalType>Auto</IntervalType>
                     </ChartMajorTickMarks>
                     <ChartMinorTickMarks>
                       <Style>
@@ -547,12 +556,8 @@
                       <Length>0.5</Length>
                     </ChartMinorTickMarks>
                     <CrossAt>NaN</CrossAt>
-                    <Interlaced>true</Interlaced>
-                    <Scalar>true</Scalar>
                     <Minimum>NaN</Minimum>
                     <Maximum>NaN</Maximum>
-                    <LabelsAutoFitDisabled>true</LabelsAutoFitDisabled>
-                    <HideEndLabels>true</HideEndLabels>
                     <ChartAxisScaleBreak>
                       <Style />
                     </ChartAxisScaleBreak>
@@ -725,6 +730,9 @@
                     </ChartAxisScaleBreak>
                   </ChartAxis>
                 </ChartValueAxes>
+                <ChartThreeDProperties>
+                  <Enabled>true</Enabled>
+                </ChartThreeDProperties>
                 <Style>
                   <BackgroundColor>#00ffffff</BackgroundColor>
                   <BackgroundGradientType>None</BackgroundGradientType>
@@ -737,7 +745,6 @@
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>8pt</FontSize>
                 </Style>
-                <Position>TopLeft</Position>
                 <ChartLegendTitle>
                   <Caption />
                   <Style>
@@ -752,7 +759,7 @@
             </ChartLegends>
             <ChartTitles>
               <ChartTitle Name="Default">
-                <Caption>Sucursales con mayores ventas</Caption>
+                <Caption>Sucursales con mayor cantidad de productos vendidos</Caption>
                 <Style>
                   <BackgroundGradientType>None</BackgroundGradientType>
                   <FontSize>9pt</FontSize>
@@ -782,9 +789,10 @@
               </Style>
             </ChartNoDataMessage>
             <DataSetName>DataSet1</DataSetName>
-            <Top>3.62169in</Top>
-            <Height>9.56645in</Height>
-            <Width>9.88846in</Width>
+            <Top>2.62149in</Top>
+            <Left>1.20331in</Left>
+            <Height>4.72339in</Height>
+            <Width>7.53062in</Width>
             <ZIndex>2</ZIndex>
             <Style>
               <Border>
@@ -796,10 +804,10 @@
             </Style>
           </Chart>
         </ReportItems>
-        <Height>13.18814in</Height>
+        <Height>7.34488in</Height>
         <Style />
       </Body>
-      <Width>9.88846in</Width>
+      <Width>9.24699in</Width>
       <Page>
         <LeftMargin>1in</LeftMargin>
         <RightMargin>1in</RightMargin>
@@ -818,5 +826,5 @@
   <Language>es-ES</Language>
   <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
-  <rd:ReportID>bd53f9ac-7716-4864-a445-d6c842d7161c</rd:ReportID>
+  <rd:ReportID>1e90f907-cf84-42b5-b54c-6097425606e0</rd:ReportID>
 </Report>
